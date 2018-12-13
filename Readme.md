@@ -1,8 +1,4 @@
 
-## 运行方式
-python bitfinex_echarts_server.py
-
-
 ## 依赖包安装
 
 ```
@@ -15,6 +11,14 @@ pip install pytz -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install requests -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install pprint -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
+
+## 运行方式
+```
+git clone https://github.com/Jornason/bitfinex_echarts
+cd bitfinex_echarts
+python bitfinex_echarts_server.py
+```
+
 
 
 
