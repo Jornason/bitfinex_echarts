@@ -8,7 +8,7 @@ import pandas as pd
 from time import sleep
 import ccxt
 from Trade import get_bitfinex_candle_data,transfer_to_period_data,calcBolling,calcSince
-from utility import send_dingding_msg,saveJson
+from utility import saveJson
 import pytz
 import time
 import json

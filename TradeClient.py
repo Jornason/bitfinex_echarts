@@ -24,8 +24,8 @@ class TradeClient:
         print('__init__')
         self.setProxy = setProxy
         self.URL = 'https://api.bitfinex.com/v1'
-        self.bitfinex2 = ccxt.bitfinex2()  # 创建交易所，此处为okex交易所
-        self.bitfinex1 = ccxt.bitfinex()  # 创建交易所，此处为okex交易所
+        self.bitfinex2 = ccxt.bitfinex2()  # 创建交易所，此处为bitfinex v2 协议
+        self.bitfinex1 = ccxt.bitfinex()  # 创建交易所，此处为bitfinex v1 协议
         self.time_interval = time_interval
         self.proxies = {
                 "http": "socks5h://127.0.0.1:1080",
