@@ -63,11 +63,9 @@ def routes(app):
         time_forward = int(config['trade']['time_forward'])
         time_interval   = config['trade']['time_interval']  # 间隔运行时间，不能低于5min, 实际 15m
         since = client.milliseconds() - time_forward 
-
         _all_data = pd.read_csv(filename)
         _all_data = _all_data.sort_values(by='candle_begin_time', ascending=False)
         last_time = _all_data.loc[0, 'candle_begin_time'] # 历史数据文件中，最近的一次时间
-        since = calcSince(last_time)
         all_data = _all_data.copy()
         all_data['candle_begin_time'] = pd.to_datetime(all_data['candle_begin_time'])
 
