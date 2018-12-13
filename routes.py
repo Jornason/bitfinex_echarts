@@ -105,7 +105,7 @@ def routes(app):
         m       = float(config['param']['m']) 
         df = calcBolling(df,n,m)
 
-        _df = df[['candle_begin_time','open','high','low','close']]
+        _df = df[['candle_begin_time','open','close','low','high']]
         _df_boll = df[['upper','lower','median','volume']]
         _df_list = np.array(_df).tolist()
         _df_boll_list= np.array(_df_boll).transpose().tolist()
