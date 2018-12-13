@@ -49,9 +49,9 @@ def get_echarts_html(symbol,trade_data, boll_data):
                 formatter: function(params) {
                     res = ""                    
                     res +='open' +' : '+data0.values[params[0].dataIndex][0]+'</br>';
-                    res +='high' +' : '+data0.values[params[0].dataIndex][1]+'</br>';
+                    res +='close' +' : '+data0.values[params[0].dataIndex][1]+'</br>';
                     res +='low' +' : '+data0.values[params[0].dataIndex][2]+'</br>';
-                    res +='close' +' : '+data0.values[params[0].dataIndex][3]+'</br>';
+                    res +='high' +' : '+data0.values[params[0].dataIndex][3]+'</br>';
                     res +='upper' +' : '+data1[0][params[0].dataIndex]+'</br>';
                     res +='median' +' : '+data1[2][params[0].dataIndex]+'</br>';
                     res +='lower' +' : '+data1[1][params[0].dataIndex]+'</br>';
