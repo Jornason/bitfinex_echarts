@@ -60,7 +60,7 @@ def get_echarts_html(symbol,trade_data, boll_data):
                 }                
             },
             legend: {
-                data: ['15min', 'upper', 'lower', 'median', 'wd']
+                data: ['15min', 'upper', 'lower', 'median']
             },
             grid: {
                 left: '10%%',
