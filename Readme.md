@@ -29,11 +29,11 @@ eth_5min_data1.csv : eth历史数据(可自行更新)
 ### trade_symbol 
 交易品种，目前支持ETH, BTC
 http://127.0.0.1:3002/query?trade_symbol=eth
-![image](http://note.youdao.com/yws/res/24079/WEBRESOURCE1610c74683e457b553540bc0a2ebbf22)
+![image](https://raw.githubusercontent.com/Jornason/bitfinex_echarts/master/images/trade_symbol_eth.png)
 
 http://127.0.0.1:3002/query?trade_symbol=btc
 
-![image](http://note.youdao.com/yws/res/24087/WEBRESOURCEa8587a0b3a74d1df3b2c3ec9e9886829)
+![image](https://raw.githubusercontent.com/Jornason/bitfinex_echarts/master/images/trade_symbol_btc.png)
 
 
 
