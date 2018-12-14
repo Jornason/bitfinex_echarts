@@ -30,6 +30,17 @@ config.ini : 配置参数文件
 btc_5min_data1.csv : btc历史数据(可自行更新)
 eth_5min_data1.csv : eth历史数据(可自行更新)
 
+## 买、卖、平仓提示
+eth 案例
+![image](https://raw.githubusercontent.com/Jornason/bitfinex_echarts/master/images/buy_sell_eth.png)
+btc 案例
+![image](https://raw.githubusercontent.com/Jornason/bitfinex_echarts/master/images/buy_sell_btc.png)
+
+请自行修改Signals中交易策略函数，工程中提供的signal_moving_average函数仅作为案例不具实际交易意义
+signal:1    买入
+signal:-1   卖出
+signal:0:   平仓
+
 
 
 ## url 参数说明
