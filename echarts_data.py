@@ -1,4 +1,4 @@
-def get_echarts_html(symbol,trade_data, boll_data):
+def get_echarts_html(symbol,trade_data, boll_data,signal_data):
     echarts_data = """
     <!DOCTYPE html>
     <html>
@@ -109,6 +109,23 @@ def get_echarts_html(symbol,trade_data, boll_data):
                             borderColor0: downBorderColor
                         }
                     },
+                    markPoint: {    
+                        label: {    
+                            normal: {   
+                                show:true,
+                                
+                                formatter: function (param) {   
+                                    return param != null ? Math.round(param.value) : '';
+                                }
+                            }
+                        },
+                        data: %s
+                        tooltip: {     
+                            formatter: function (param) {
+                                return param.name + '<br>' + (param.data.coord || '');
+                            }
+                        }
+                    },                    
                 },
                 {
                     name: 'upper',
@@ -146,7 +163,7 @@ def get_echarts_html(symbol,trade_data, boll_data):
             </script>
         </body>
         </html>            
-    """%(trade_data,boll_data,symbol)
+    """%(trade_data,boll_data,symbol,signal_data)
     return echarts_data
 
 
