@@ -108,9 +108,10 @@ def routes(app):
         signal = '[],'
 
         # todo
-        # 请替换自己的交易信号函数 
-        df = signal_moving_average(df)
+        # 参考如下写法，替换自己的交易信号函数 
+        # df = signal_moving_average(df)  
 
+        
         _df = df[['candle_begin_time','open','close','low','high']]
         _df_boll = df[['upper','lower','median','volume']]
         _df_list = np.array(_df).tolist()
