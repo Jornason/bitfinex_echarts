@@ -111,10 +111,14 @@ def routes(app):
         # 参考如下写法，替换自己的交易信号函数 
         # df = signal_moving_average(df)  
 
-        
         _df = df[['candle_begin_time','open','close','low','high']]
         _df_boll = df[['upper','lower','median','volume']]
+
+        _df_boll['upper'].fillna(value=0, inplace=True)  
+        _df_boll['lower'].fillna(value=0, inplace=True)  
+        _df_boll['median'].fillna(value=0, inplace=True)  
         _df_list = np.array(_df).tolist()
+        _df_list
         _df_boll_list= np.array(_df_boll).transpose().tolist()
         str_df_list = pformat(_df_list)
         str_df_boll_list = pformat(_df_boll_list)
