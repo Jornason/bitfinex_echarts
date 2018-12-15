@@ -32,13 +32,13 @@ def get_echarts_html(symbol,trade_data, boll_data,signal_data):
                     values: values
                 };
             }
-            var data0 = splitData(%s)
-            var data1 = %s
+            var data0 = splitData(%s) // 1            
+            var data1 = %s // 2
 
 
         option = {
             title: {
-                text: '%s',
+                text: '%s', // 3
                 left: 0
             },
             tooltip: {
@@ -60,7 +60,7 @@ def get_echarts_html(symbol,trade_data, boll_data,signal_data):
                 }                
             },
             legend: {
-                data: ['15min', 'upper', 'lower', 'median']
+                data: ['k线', 'upper', 'lower', 'median']
             },
             grid: {
                 left: '10%%',
@@ -98,7 +98,7 @@ def get_echarts_html(symbol,trade_data, boll_data,signal_data):
             ],
             series: [
                 {
-                    name: '15min',
+                    name: 'k线',
                     type: 'candlestick',
                     data: data0.values,
                     itemStyle: {
@@ -119,7 +119,7 @@ def get_echarts_html(symbol,trade_data, boll_data,signal_data):
                                 }
                             }
                         },
-                        data: %s
+                        data: %s //4
                         tooltip: {     
                             formatter: function (param) {
                                 return param.name + '<br>' + (param.data.coord || '');

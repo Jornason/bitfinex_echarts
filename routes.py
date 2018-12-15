@@ -105,6 +105,12 @@ def routes(app):
         n       = int(config['param']['n']) 
         m       = float(config['param']['m']) 
         df = calcBolling(df,n,m)
+        signal = '[],'
+
+        # todo
+        # 请替换自己的交易信号函数 
+        df = signal_moving_average(df)
+
         _df = df[['candle_begin_time','open','close','low','high']]
         _df_boll = df[['upper','lower','median','volume']]
         _df_list = np.array(_df).tolist()
@@ -112,27 +118,24 @@ def routes(app):
         str_df_list = pformat(_df_list)
         str_df_boll_list = pformat(_df_boll_list)
 
-        signal = '[],'
+        if 'signal' in df.columns.tolist():
+            x = list(df[df['signal'].notnull()]['candle_begin_time'])
+            y = list(df[df['signal'].notnull()]['high'])
+            z = list(df[df['signal'].notnull()]['signal'])
+            signal = '['
+            for i in zip(x,y,z):  #rgb(41,60,85)
+                if i[2] ==1:
+                    temp = "{coord:['"+str(i[0])+"',"+str(i[1]) + "], label:{ normal: { formatter: function (param) { return \"买\";}} } ,itemStyle: {normal: {color: 'rgb(214,18,165)'}}},"
+                elif i[2] ==-1:
+                    temp = "{coord:['" + str(i[0]) + "'," + str(
+                        i[1]) + "] , label:{ normal: { formatter: function (param) { return \"卖\";}} } ,itemStyle: {normal: {color: 'rgb(0,0,255)'}}},"
+                else:
+                    temp = "{coord:['" + str(i[0]) + "'," + str(
+                        i[1]) + "], label:{ normal: { formatter: function (param) { return \"平仓\";}} },itemStyle: {normal: {color: 'rgb(224,136,11)'}}},"
 
-        # 请替换自己的交易信号函数 1:做多，-1:做空, 0:平仓
-        df = signal_moving_average(df)
-        x = list(df[df['signal'].notnull()]['candle_begin_time'])
-        y = list(df[df['signal'].notnull()]['high'])
-        z = list(df[df['signal'].notnull()]['signal'])
-        signal = '['
-        for i in zip(x,y,z):  #rgb(41,60,85)
-            if i[2] ==1:
-                temp = "{coord:['"+str(i[0])+"',"+str(i[1]) + "], label:{ normal: { formatter: function (param) { return \"买\";}} } ,itemStyle: {normal: {color: 'rgb(214,18,165)'}}},"
-            elif i[2] ==-1:
-                temp = "{coord:['" + str(i[0]) + "'," + str(
-                    i[1]) + "] , label:{ normal: { formatter: function (param) { return \"卖\";}} } ,itemStyle: {normal: {color: 'rgb(0,0,255)'}}},"
-            else:
-                temp = "{coord:['" + str(i[0]) + "'," + str(
-                    i[1]) + "], label:{ normal: { formatter: function (param) { return \"平仓\";}} },itemStyle: {normal: {color: 'rgb(224,136,11)'}}},"
-
-            signal += temp
-        signal = signal.rstrip(',')
-        signal += '],'
+                signal += temp
+            signal = signal.rstrip(',')
+            signal += '],'
 
         _html = get_echarts_html(symbol,str_df_list,str_df_boll_list,signal)
         return _html 

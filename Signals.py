@@ -1,3 +1,9 @@
+import pandas as pd
+pd.set_option('expand_frame_repr', False)  # 当列太多时不换行
+pd.set_option('display.max_rows', 1000)
+import numpy as np
+
+
 # ===移动平均线策略
 # 简单移动均线策略，仅作为案例不具交易价值
 def signal_moving_average(df, para=[50, 500, 30, 300]):
@@ -54,3 +60,4 @@ def signal_moving_average(df, para=[50, 500, 30, 300]):
     df['pos'].fillna(method='ffill', inplace=True)
     df['pos'].fillna(value=0, inplace=True)  # 将初始行数的position补全为0
     return df
+

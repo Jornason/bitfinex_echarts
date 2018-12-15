@@ -36,11 +36,14 @@ eth 案例
 btc 案例
 ![image](https://raw.githubusercontent.com/Jornason/bitfinex_echarts/master/images/buy_sell_btc.png)
 
-请自行修改Signals中交易策略函数，工程中提供的signal_moving_average函数仅作为案例不具实际交易意义
-signal:1    买入
-signal:-1   卖出
-signal:0:   平仓
+1. 修改Signals.py，添加自己的交易策略函数，具体可参考signal_moving_average函数
+signal:1    买入;
+signal:-1   卖出;
+signal:0:   平仓;
 
+2. 在 routes.py 的 todo 处把signal_moving_average替换自己的策略函数
+
+3. 如果策略带'upper','lower','median' 数据，可视化将从策略计算结果读取
 
 
 ## url 参数说明
