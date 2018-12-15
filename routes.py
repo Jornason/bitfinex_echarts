@@ -102,26 +102,47 @@ def routes(app):
         if _backward_num != 0:
             df = df.iloc[_backward_num:]
         df['candle_begin_time'] = df['candle_begin_time'].apply(str)
-        n       = int(config['param']['n']) 
-        m       = float(config['param']['m']) 
-        ema_short   = int(config['ema_param']['ema_short']) 
-        ema_long   = int(config['ema_param']['ema_long']) 
-        df = calcBolling(df,n,m)
-        df["ema_short"] = calcEMA(df,ema_short)
-        df["ema_long"] = calcEMA(df,ema_long)
+        
+        if 'boll_param' in config:
+            needBoll = True
+            n        = int(config['boll_param']['n']) 
+            m        = float(config['boll_param']['m']) 
+            df = calcBolling(df,n,m)
+        else:
+            needBoll = False
+            n       = 0
+            m       = 0
+            df['upper'] = np.nan
+            df['lower'] = np.nan
+            df['median'] = np.nan
+
+        if 'ema_param' in config:
+            needEMA = True
+            ema_short   = int(config['ema_param']['ema_short']) 
+            ema_long   = int(config['ema_param']['ema_long']) 
+            df["ema_short"] = calcEMA(df,ema_short)
+            df["ema_long"] = calcEMA(df,ema_long)
+        else:
+            needEMA = False
+            ema_short   = 0
+            ema_long   = 0            
+            df['ema_short'] = np.nan
+            df['ema_long'] = np.nan
+
+
 
         signal = '[],'
-
         # todo
         # 参考如下写法，替换自己的交易信号函数 
         # df = signal_moving_average(df)  
-
         _df = df[['candle_begin_time','open','close','low','high']]
         _df_boll = df[['upper','lower','median','volume','ema_short','ema_long']]
 
         _df_boll['upper'].fillna(value=0, inplace=True)  
         _df_boll['lower'].fillna(value=0, inplace=True)  
         _df_boll['median'].fillna(value=0, inplace=True)  
+        _df_boll['ema_short'].fillna(value=0, inplace=True)  
+        _df_boll['ema_long'].fillna(value=0, inplace=True)  
         _df_list = np.array(_df).tolist()
         _df_boll_list= np.array(_df_boll).transpose().tolist()
         str_df_list = pformat(_df_list)
