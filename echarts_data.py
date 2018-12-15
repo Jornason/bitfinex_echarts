@@ -56,11 +56,13 @@ def get_echarts_html(symbol,trade_data, boll_data,signal_data):
                     res +='median' +' : '+data1[2][params[0].dataIndex]+'</br>';
                     res +='lower' +' : '+data1[1][params[0].dataIndex]+'</br>';
                     res +='volume' +' : '+data1[3][params[0].dataIndex]+'</br>';
+                    res +='ema_short' +' : '+data1[4][params[0].dataIndex]+'</br>';
+                    res +='ema_long' +' : '+data1[5][params[0].dataIndex]+'</br>';
                     return res;
                 }                
             },
             legend: {
-                data: ['k线', 'upper', 'lower', 'median']
+                data: ['k线', 'upper', 'lower', 'median', 'ema_short', 'ema_long']
             },
             grid: {
                 left: '10%%',
@@ -153,7 +155,25 @@ def get_echarts_html(symbol,trade_data, boll_data,signal_data):
                     lineStyle: {
                         normal: {opacity: 0.5}
                     }
-                },             
+                },   
+                {
+                    name: 'ema_short',
+                    type: 'line',
+                    data: data1[4],
+                    smooth: true,
+                    lineStyle: {
+                        normal: {opacity: 0.5}
+                    }
+                },    
+                {
+                    name: 'ema_long',
+                    type: 'line',
+                    data: data1[5],
+                    smooth: true,
+                    lineStyle: {
+                        normal: {opacity: 0.5}
+                    }
+                },    
             ]
         };
                 // 使用刚指定的配置项和数据显示图表。

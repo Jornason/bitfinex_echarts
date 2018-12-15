@@ -56,6 +56,14 @@ def calcBolling(df,n,m):
     df['lower'] = df['median'] - m * df['std']
     return df
 
+def calcEMA(df,n):
+    df = df.copy()
+    # 计算均线
+    df['ema'] = pd.Series.ewm(df['close'], span=n, min_periods=1).mean()
+    df['ema'].fillna(value=0, inplace=True)  
+    return df['ema']
+
+
 def calcSince(sinceDt):
     sinceDt=sinceDt
     since = int(time.mktime(time.strptime(sinceDt, "%Y-%m-%d %H:%M:%S")))*1000 + 60 * 1000

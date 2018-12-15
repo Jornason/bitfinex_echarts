@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 from time import sleep
 import ccxt
-from Trade import get_bitfinex_candle_data,transfer_to_period_data,calcBolling,calcSince
+from Trade import get_bitfinex_candle_data,transfer_to_period_data,calcBolling,calcSince,calcEMA
 from utility import saveJson
 import pytz
 import time
@@ -104,7 +104,12 @@ def routes(app):
         df['candle_begin_time'] = df['candle_begin_time'].apply(str)
         n       = int(config['param']['n']) 
         m       = float(config['param']['m']) 
+        ema_short   = int(config['ema_param']['ema_short']) 
+        ema_long   = int(config['ema_param']['ema_long']) 
         df = calcBolling(df,n,m)
+        df["ema_short"] = calcEMA(df,ema_short)
+        df["ema_long"] = calcEMA(df,ema_long)
+
         signal = '[],'
 
         # todo
@@ -112,7 +117,7 @@ def routes(app):
         # df = signal_moving_average(df)  
 
         _df = df[['candle_begin_time','open','close','low','high']]
-        _df_boll = df[['upper','lower','median','volume']]
+        _df_boll = df[['upper','lower','median','volume','ema_short','ema_long']]
 
         _df_boll['upper'].fillna(value=0, inplace=True)  
         _df_boll['lower'].fillna(value=0, inplace=True)  
