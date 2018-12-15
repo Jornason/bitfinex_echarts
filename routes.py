@@ -118,7 +118,6 @@ def routes(app):
         _df_boll['lower'].fillna(value=0, inplace=True)  
         _df_boll['median'].fillna(value=0, inplace=True)  
         _df_list = np.array(_df).tolist()
-        _df_list
         _df_boll_list= np.array(_df_boll).transpose().tolist()
         str_df_list = pformat(_df_list)
         str_df_boll_list = pformat(_df_boll_list)
