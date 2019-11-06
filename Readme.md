@@ -13,6 +13,7 @@ pip install pysocks1.6.6 -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install pytz -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install requests -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install pprint -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install flask==1.0.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 ## 运行方式
