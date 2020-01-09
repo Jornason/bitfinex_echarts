@@ -7,10 +7,17 @@ def get_echarts_html(symbol,trade_data, boll_data,signal_data):
         <title>ECharts</title>
         <!-- 引入 echarts.js -->
         <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.min.js"></script>
+        <style type="text/css">
+            html,body,div{
+                margin: 0;
+                padding: 0;
+                height: 100%%;
+            }
+        </style>
     </head>
     <body>
         <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-        <div id="main" style="width: 1200px;height:600px;"></div>
+        <div id="main"></div>
         <script type="text/javascript">
 
             // 基于准备好的dom，初始化echarts实例
