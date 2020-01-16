@@ -97,7 +97,7 @@ def routes(app):
         df = all_data.copy() 
         if (forward_num == "" and begin_time == "" and end_time == ""):
             _forward_num = 1000
-        if _forward_num != 0:
+        elif _forward_num != 0:
             df = df.iloc[-_forward_num:]
         if _backward_num != 0:
             df = df.iloc[_backward_num:]
